@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="col-xs-12 formBox">
+    <h3 class="text-center">Multiple User Registration</h3>
+    <form [formGroup]="userForm" (ngSubmit)="submit()" novalidate>
+        <div formArrayName="userinfo">
+            <div class="form-group clearfix"  *ngFor="let user of userFormGroup.controls; index as i">
+                <div class="clearfix" [formGroupName]="i">
+                    <h4>User Form {{i+1}}</h4> <!-- because i=0 -->
+                    <div class="col-md-4 col-xs-12">
+                        <label>Name</label>
+                        <input type="text" class="form-control" formControlName="uname" />
+                        <div class="error" *ngIf="getUserFormGroup(i).controls['uname'].errors">
+                            <div *ngIf="getUserFormGroup(i).controls['uname'].errors.minlength">Name must be at least 6 characters</div>
+                            <div *ngIf="getUserFormGroup(i).controls['uname'].errors.maxlength">Name must be at most 20 characters</div>
+                        </div>    
+                    </div>
+                    <div class="col-md-3 col-xs-12">
+                        <label>Email</label>
+                            <input type="text" class="form-control" formControlName="uemail" />
+                            <div class="error" *ngIf="getUserFormGroup(i).controls['uemail'].errors">
+                                <div *ngIf="getUserFormGroup(i).controls['uemail'].errors.maxlength">Email must be at most 20 characters</div>
+                                <div *ngIf="getUserFormGroup(i).controls['uemail'].errors.email">Email is not correct</div>
+                            </div>
+                    </div>
+                    <div class="col-md-3 col-xs-12">
+                        <label>Mobile No</label>
+                        <input type="text" class="form-control" formControlName="umobile" />
+                        <div class="error" *ngIf="getUserFormGroup(i).controls['umobile'].errors">
+                                <div *ngIf="getUserFormGroup(i).controls['umobile'].errors.minlength">Mobile must be at least 10 characters</div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-xs-12">
+                        <button class="btn btn-danger mt" type="button" [disabled]="i<1" (click)="removeUser(i)"> Remove </button>
+                    </div>
+                </div> 
+            </div>  
+        </div>
+        
+        <div class="form-group clearfix">
+            <div class="col-md-12 col-xs-12">
+                  <button class="btn btn-primary" type="button" (click)="addUser()"> Add User </button>
+                  <button type="submit" [disabled]="!userForm.valid" class="btn btn-success">Submit</button>
+            </div>
+        </div>          
+      </form>
+  </div>
+</div>

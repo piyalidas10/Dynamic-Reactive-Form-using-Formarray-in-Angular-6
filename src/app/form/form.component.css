@@ -1,0 +1,21 @@
+.formBox{
+    background: #ffffff;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-top: 20px;
+}
+.formBox h4{
+    margin: 10px 15px;
+    background: #eaeaea;
+    padding: 10px;
+    font-weight: bold;
+}
+.mt{
+    margin-top: 25px;
+}
+.btn{
+    margin-right: 10px;
+}
+.btn:last-child{
+    margin-right: 0;
+}
